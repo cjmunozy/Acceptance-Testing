@@ -1,4 +1,4 @@
-Feature: list all task
+Feature: list all tasks
 
   Scenario: list all tasks in the to-do list
     Given the to-do list contains tasks:

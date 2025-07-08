@@ -16,7 +16,7 @@ def step_impl(context):
 @when('the user marks task "{task_name}" as completed')
 def step_impl(context, task_name):
     # Find the task in the to-do list
-    task = Task(task_name, "", "")
+    task = Task(task_name, task_name, "", "Pendiente")
     if task in to_do_list:
         tachar_tarea(task)
     else:

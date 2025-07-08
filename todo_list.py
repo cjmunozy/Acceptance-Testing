@@ -46,7 +46,7 @@ def listar_tareas():
 
 def tachar_tarea(tarea):
     if tarea in todo_list:
-        tarea.cambiarEstado("Completada")
+        tarea.cambiar_estado("Completada")
 
 
 def limpiar_lista(todo_list):
