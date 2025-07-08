@@ -7,6 +7,8 @@ Feature: list all task
       | Pay bills |
     When the user lists all tasks
     Then the output should contain:
+      """
       Tasks:
       - Buy groceries
       - Pay bills
+      """

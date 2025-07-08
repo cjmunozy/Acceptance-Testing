@@ -1,24 +1,30 @@
-from behave import *
+from behave import given, when, then
+from todo_list import todo_list, Task, listar_tareas
 
 # Define a list to represent the to-do list
-to_do_list = []
+to_do_list = todo_list
 
-#Step 1: Given the to-do list is empty
+# Define a string to hold the output of the task listing
+output = ""
+
+# Step 1: Given the to-do list contains tasks
 @given('the to-do list contains tasks')
 def step_impl(context):
     # Set the to-do list as an empty List
     for row in context.table:
-        to_do_list.append(Task(row['Task']))
+        to_do_list.append(Task(row['Task'], row['Task'], "", "Pendiente"))
 
-# Step 2: When the user adds a task "Buy groceries"
-@when('the user adds a task "{task}"')
-def step_impl (context, task):
-    # Add the task to the to-do list
-    global to_do_list
-    to_do_list.append(task)
+# Step 2: When the user lists all tasks
+@when('the user lists all tasks')
+def step_impl(context):
+    # List all tasks in the to-do list
+    global output
+    output = listar_tareas()
 
-# Step 3: Then the to-do list should contain "Buy groceries"
-@then('the to-do list should contain "{task}"')
-def step_impl (context, task):
+# Step 3: Then the output should contain all the tasks
+@then('the output should contain "{text}"')
+def step_impl(context, text):
     # Check if the task is in the to-do list
-    assert task in to_do_list, f'Task "{task}" not found in the to-do list'
+    assert text == output, (
+        f'Task "{text}" not found in the output'
+    )
